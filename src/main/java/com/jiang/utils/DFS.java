@@ -46,6 +46,8 @@ public class DFS {
 			visited.put(vertexId, true);
 			
 			List<Edge> vertexAdj = adj.get(vertexId);
+			if (vertexAdj == null)
+				return;
 			for(Edge edge : vertexAdj) {
 				Integer otherVertex = edge.getToVertexId();
 				dfs(otherVertex, visited, adj);
@@ -63,6 +65,8 @@ public class DFS {
 			System.out.print(curr + "->");
 			
 			List<Edge> vertexAdj = adj.get(curr);
+			if (vertexAdj == null)
+				return;
 			for(Edge edge : vertexAdj) {
 				if (!visited.containsKey(edge.getToVertexId())) {
 					stack.push(edge.getToVertexId());

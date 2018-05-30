@@ -28,12 +28,30 @@ public class Graph {
 	}
 	
 	public void addEdge(int fromVertexId, int toVertexId, double weight) {
-		if (adj.containsKey(fromVertexId)) {
-			adj.get(fromVertexId).add(new Edge(fromVertexId, toVertexId, weight));
+		if (directed) {
+			if (adj.containsKey(fromVertexId)) {
+				adj.get(fromVertexId).add(new Edge(fromVertexId, toVertexId, weight));
+			} else {
+				List<Edge> list = new ArrayList<>();
+				list.add(new Edge(fromVertexId, toVertexId, weight));
+				adj.put(fromVertexId, list);
+			}
 		} else {
-			List<Edge> list = new ArrayList<>();
-			list.add(new Edge(fromVertexId, toVertexId, weight));
-			adj.put(fromVertexId, list);
+			if (adj.containsKey(fromVertexId)) {
+				adj.get(fromVertexId).add(new Edge(fromVertexId, toVertexId, weight));
+			} else {
+				List<Edge> list = new ArrayList<>();
+				list.add(new Edge(fromVertexId, toVertexId, weight));
+				adj.put(fromVertexId, list);
+			}
+			
+			if (adj.containsKey(toVertexId)) {
+				adj.get(toVertexId).add(new Edge(toVertexId, fromVertexId, weight));
+			} else {
+				List<Edge> list = new ArrayList<>();
+				list.add(new Edge(toVertexId, fromVertexId, weight));
+				adj.put(toVertexId, list);
+			}
 		}
 	}
 

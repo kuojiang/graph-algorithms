@@ -34,5 +34,10 @@ public class Edge {
 		this.toVertexId = toVertexId;
 	}
 	
+
+	@Override
+	public String toString() {
+		return "Edge [weight=" + weight + ", fromVertexId=" + fromVertexId + ", toVertexId=" + toVertexId + "]";
+	}
 	
 }

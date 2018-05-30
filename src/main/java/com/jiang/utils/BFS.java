@@ -45,6 +45,8 @@ public class BFS {
 			
 			
 			List<Edge> vertexAdj = adj.get(curr);
+			if (vertexAdj == null)
+				return;
 			for(Edge edge : vertexAdj) {
 				if (!visited.containsKey(edge.getToVertexId())) {
 					queue.add(edge.getToVertexId());
